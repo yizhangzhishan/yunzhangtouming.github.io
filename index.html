@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>益账知善 - 云账透明队 | 校园公益财务平台</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#E64398',
+        pinkLight: '#FEE7EF',
+        greenLight: '#E6F7F0',
+        blueLight: '#E6F2FF',
+        amberLight: '#FFF6E6'
+      },
+      fontFamily: {
+        sans: ['Microsoft YaHei', 'sans-serif']
+      }
+    }
+  }
+}
+</script>
+<style>
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.card-hover { transition: all 0.25s ease; }
+.card-hover:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.link-hover { color:#E64398; cursor:pointer; text-decoration:underline; }
+.link-hover:hover { opacity:0.8; }
+/* 放大版圆形云账LOGO */
+.logo-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #E64398;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+/* 图片兜底样式，加载失败也不会空白 */
+img {
+  display: block;
+  width: 100%;
+  background: #f5f5f5;
+  min-height: 100px;
+}
+</style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+
+<!-- 顶部导航栏 -->
+<header class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <!-- 放大版圆形云账LOGO -->
+      <div class="logo-circle">云账</div>
+      <div>
+        <h1 class="text-xl font-bold text-primary">益账知善</h1>
+        <p class="text-xs text-gray-500">校园小微公益财务透明化平台</p>
+      </div>
+    </div>
+    <nav class="flex gap-6 text-sm font-medium">
+      <a href="#" class="nav-tab text-primary border-b-2 border-primary py-1" data-tab="home">首页</a>
+      <a href="#" class="nav-tab text-gray-600 hover:text-primary py-1" data-tab="map">钱流地图</a>
+      <a href="#" class="nav-tab text-gray-600 hover:text-primary py-1" data-tab="story">钱的故事</a>
+      <a href="#" class="nav-tab text-gray-600 hover:text-primary py-1" data-tab="public">项目公示</a>
+      <a href="#" class="nav-tab text-gray-600 hover:text-primary py-1" data-tab="about">关于我们</a>
+    </nav>
+    <div class="text-sm text-gray-500">让每一份善意被看见 ❤</div>
+  </div>
+</header>
+
+<!-- 主内容区 -->
+<main class="max-w-7xl mx-auto px-4 py-6">
+
+  <!-- 首页 Tab -->
+  <div id="home" class="tab-content active">
+    <!-- 顶部Banner 稳定大图 -->
+    <section class="bg-pinkLight rounded-2xl p-8 mb-8 flex flex-col md:flex-row items-center justify-between">
+      <div>
+        <h2 class="text-3xl font-bold mb-2">每一笔善款 · 都值得被看见</h2>
+        <p class="text-lg text-gray-700 mb-3">透明 · 真实 · 可追溯</p>
+        <p class="text-sm text-gray-600 max-w-xl">益账知善致力于校园公益财务透明化，依托三单合一机制，让善款流向清晰可见，让爱心传递更有力量。</p>
+      </div>
+      <div class="mt-4 md:mt-0">
+        <img src="https://picsum.photos/id/1036/600/300" alt="青春志愿者红马甲公益插画" class="h-48 rounded-lg object-contain">
+      </div>
+    </section>
+
+    <!-- 项目总览（完全不变） -->
+    <section class="mb-8">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-bold flex items-center gap-2">
+          <i class="fa fa-th-list text-primary"></i> 项目总览
+        </h3>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-white rounded-xl p-5 card-hover border-l-4 border-pink-500">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm text-gray-500">善款总收入 (元)</p>
+              <p class="text-2xl font-bold mt-1">616791.50</p>
+              <p class="text-xs text-gray-400 mt-1">共 10 笔项目记录</p>
+            </div>
+            <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center text-pink-500">
+              <i class="fa fa-money"></i>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-5 card-hover border-l-4 border-green-500">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm text-gray-500">善款总支出 (元)</p>
+              <p class="text-2xl font-bold mt-1">242022.50</p>
+              <p class="text-xs text-gray-400 mt-1">共 10 笔项目记录</p>
+            </div>
+            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-500">
+              <i class="fa fa-shopping-cart"></i>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-5 card-hover border-l-4 border-blue-500">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm text-gray-500">项目总数</p>
+              <p class="text-2xl font-bold mt-1">10</p>
+              <p class="text-xs text-gray-400 mt-1">记录总数 10 条</p>
+            </div>
+            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-500">
+              <i class="fa fa-list-alt"></i>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-5 card-hover border-l-4 border-amber-500">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm text-gray-500">当前结余 (元)</p>
+              <p class="text-2xl font-bold mt-1">374769.00</p>
+              <p class="text-xs text-gray-400 mt-1">结余将用于后续公益</p>
+            </div>
+            <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center text-amber-500">
+              <i class="fa fa-pie-chart"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- 左侧：善款钱流地图（不变） -->
+      <div class="lg:col-span-2">
+        <div class="bg-white rounded-xl p-5 mb-6">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-bold flex items-center gap-2">
+              <i class="fa fa-map text-primary"></i> 善款钱流地图
+            </h3>
+            <span class="link-hover" onclick="switchTab('map')">查看详情</span>
+          </div>
+          <div class="flex items-center justify-between text-center text-sm my-6">
+            <div>
+              <div class="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center mx-auto text-primary mb-2">
+                <i class="fa fa-heart"></i>
+              </div>
+              <p class="font-medium">善款募集</p>
+              <p class="text-primary font-bold">¥616791.50</p>
+              <p class="text-xs text-gray-500">线上+线下</p>
+            </div>
+            <i class="fa fa-arrow-right text-gray-300"></i>
+            <div>
+              <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mx-auto text-blue-500 mb-2">
+                <i class="fa fa-file-text"></i>
+              </div>
+              <p class="font-medium">善款管理</p>
+              <p class="text-blue-500 font-bold">¥616791.50</p>
+              <p class="text-xs text-gray-500">凭证归集</p>
+            </div>
+            <i class="fa fa-arrow-right text-gray-300"></i>
+            <div>
+              <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto text-green-500 mb-2">
+                <i class="fa fa-shopping-cart"></i>
+              </div>
+              <p class="font-medium">善款支出</p>
+              <p class="text-green-500 font-bold">¥242022.50</p>
+              <p class="text-xs text-gray-500">物资采购</p>
+            </div>
+            <i class="fa fa-arrow-right text-gray-300"></i>
+            <div>
+              <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center mx-auto text-indigo-500 mb-2">
+                <i class="fa fa-truck"></i>
+              </div>
+              <p class="font-medium">物资送达</p>
+            </div>
+            <i class="fa fa-arrow-right text-gray-300"></i>
+            <div>
+              <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mx-auto text-purple-500 mb-2">
+                <i class="fa fa-users"></i>
+              </div>
+              <p class="font-medium">受益反馈</p>
+            </div>
+          </div>
+          <p class="text-xs text-gray-500 text-center">* 三单合一：每一笔支出均对应收入凭证+支出凭证+签收凭证，确保真实可追溯</p>
+        </div>
+
+        <!-- 钱的故事：首页4张 稳定图片 -->
+        <div class="bg-white rounded-xl p-5">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-bold flex items-center gap-2">
+              <i class="fa fa-book text-primary"></i> 钱的故事
+            </h3>
+            <span class="link-hover" onclick="switchTab('story')">查看更多故事</span>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="rounded-lg overflow-hidden border">
+              <img src="https://picsum.photos/id/1037/300/200" class="w-full h-32 object-cover" alt="青春志愿者助学插画">
+              <div class="p-2">
+                <p class="text-xs font-medium">爱心助学，点亮希望</p>
+                <p class="text-xs text-gray-400 mt-1">2025-01-10</p>
+              </div>
+            </div>
+            <div class="rounded-lg overflow-hidden border">
+              <img src="https://picsum.photos/id/1038/300/200" class="w-full h-32 object-cover" alt="青年志愿者乡村支教插画">
+              <div class="p-2">
+                <p class="text-xs font-medium">乡村支教，温暖同行</p>
+                <p class="text-xs text-gray-400 mt-1">2025-01-15</p>
+              </div>
+            </div>
+            <div class="rounded-lg overflow-hidden border">
+              <img src="https://picsum.photos/id/1039/300/200" class="w-full h-32 object-cover" alt="红马甲志愿者公益义卖插画">
+              <div class="p-2">
+                <p class="text-xs font-medium">公益义卖，汇聚善意</p>
+                <p class="text-xs text-gray-400 mt-1">2025-01-20</p>
+              </div>
+            </div>
+            <div class="rounded-lg overflow-hidden border">
+              <img src="https://picsum.photos/id/1040/300/200" class="w-full h-32 object-cover" alt="青年志愿物资捐赠插画">
+              <div class="p-2">
+                <p class="text-xs font-medium">物资捐赠，传递温暖</p>
+                <p class="text-xs text-gray-400 mt-1">2025-01-25</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右侧边栏（不变） -->
+      <div class="lg:col-span-1">
+        <div class="bg-white rounded-xl p-5 mb-6">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-bold">最新公示</h3>
+            <span class="link-hover" onclick="switchTab('public')">更多</span>
+          </div>
+          <div class="space-y-3 text-sm">
+            <div class="flex justify-between">
+              <span>清马工程“藏龙班”项目公示</span>
+              <span class="text-gray-400">2023-12-26</span>
+            </div>
+            <div class="flex justify-between">
+              <span>义卖善款捐赠项目公示</span>
+              <span class="text-gray-400">2025-04-02</span>
+            </div>
+            <div class="flex justify-between">
+              <span>大学生劳动教育基金公示</span>
+              <span class="text-gray-400">2026-03-11</span>
+            </div>
+            <div class="flex justify-between">
+              <span>桑林琴学生帮扶项目公示</span>
+              <span class="text-gray-400">2022-07-06</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-5 mb-6">
+          <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+            <i class="fa fa-cogs text-primary"></i> 项目管理
+          </h3>
+          <div class="space-y-3">
+            <button onclick="openAddProject()" class="w-full bg-primary text-white py-2 rounded-lg hover:bg-pink-600 transition">
+              <i class="fa fa-plus mr-1"></i> 添加新项目
+            </button>
+            <button onclick="openAddRecord()" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
+              <i class="fa fa-plus mr-1"></i> 添加收支记录
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-5">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-bold">相关凭证公示</h3>
+            <span class="link-hover" onclick="switchTab('public')">更多</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-pink-50 p-3 rounded-lg text-center">
+              <i class="fa fa-file-pdf-o text-primary text-xl"></i>
+              <p class="text-sm font-medium mt-1">收入凭证</p>
+              <p class="text-xs text-gray-500">45 份</p>
+            </div>
+            <div class="bg-green-50 p-3 rounded-lg text-center">
+              <i class="fa fa-file-text-o text-green-500 text-xl"></i>
+              <p class="text-sm font-medium mt-1">支出凭证</p>
+              <p class="text-xs text-gray-500">62 份</p>
+            </div>
+            <div class="bg-blue-50 p-3 rounded-lg text-center">
+              <i class="fa fa-check-square-o text-blue-500 text-xl"></i>
+              <p class="text-sm font-medium mt-1">签收凭证</p>
+              <p class="text-xs text-gray-500">36 份</p>
+            </div>
+            <div class="bg-amber-50 p-3 rounded-lg text-center">
+              <i class="fa fa-folder-open-o text-amber-500 text-xl"></i>
+              <p class="text-sm font-medium mt-1">其他凭证</p>
+              <p class="text-xs text-gray-500">15 份</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 钱流地图详情页（不变） -->
+  <div id="map" class="tab-content">
+    <div class="bg-white rounded-xl p-6">
+      <h2 class="text-2xl font-bold mb-4">善款钱流地图详情</h2>
+      <p class="text-gray-600 mb-6">完整展示每一笔善款从募集到送达的全链路流向，三单合一全程可追溯。</p>
+      <table class="w-full border-collapse">
+        <thead>
+          <tr class="bg-gray-50">
+            <th class="border p-3 text-left">阶段</th>
+            <th class="border p-3 text-left">金额</th>
+            <th class="border p-3 text-left">凭证数量</th>
+            <th class="border p-3 text-left">状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border p-3">善款募集</td>
+            <td class="border p-3">616791.50 元</td>
+            <td class="border p-3">45 份收入凭证</td>
+            <td class="border p-3 text-green-500">已完成</td>
+          </tr>
+          <tr>
+            <td class="border p-3">善款管理</td>
+            <td class="border p-3">616791.50 元</td>
+            <td class="border p-3">台账归档</td>
+            <td class="border p-3 text-green-500">已完成</td>
+          </tr>
+          <tr>
+            <td class="border p-3">善款支出</td>
+            <td class="border p-3">242022.50 元</td>
+            <td class="border p-3">62 份支出凭证</td>
+            <td class="border p-3 text-green-500">已完成</td>
+          </tr>
+          <tr>
+            <td class="border p-3">物资送达</td>
+            <td class="border p-3">—</td>
+            <td class="border p-3">36 份签收凭证</td>
+            <td class="border p-3 text-green-500">已完成</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 钱的故事详情页：7张 稳定图片 -->
+  <div id="story" class="tab-content">
+    <div class="bg-white rounded-xl p-6">
+      <h2 class="text-2xl font-bold mb-4">钱的故事 · 善意可视化</h2>
+      <p class="text-gray-600 mb-6">将财务数据转化为真实公益故事，记录每一份善意的落地瞬间。</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="border rounded-xl overflow-hidden">
+          <img src="https://picsum.photos/id/1037/400/250" class="w-full h-48 object-cover" alt="青春红马甲志愿者助学插画">
+          <div class="p-4">
+            <h4 class="font-bold mb-2">爱心助学，点亮希望</h4>
+            <p class="text-sm text-gray-600">善款转化为学习用品，为困境学子提供坚实保障。</p>
+            <p class="text-xs text-gray-400 mt-3">2025-01-10</p>
+          </div>
+        </div>
+        <div class="border rounded-xl overflow-hidden">
+          <img src="https://picsum.photos/id/1038/400/250" class="w-full h-48 object-cover" alt="青年志愿者乡村支教青春插画">
+          <div class="p-4">
+            <h4 class="font-bold mb-2">乡村支教，温暖同行</h4>
+            <p class="text-sm text-gray-600">志愿者与善款共同助力，改善乡村教育环境。</p>
+            <p class="text-xs text-gray-400 mt-3">2025-01-15</p>
+          </div>
+        </div>
+        <div class="border rounded-xl overflow-hidden">
+          <img src="https://picsum.photos/id/1039/400/250" class="w-full h-48 object-cover" alt="青春志愿公益义卖插画">
+          <div class="p-4">
+            <h4 class="font-bold mb-2">公益义卖，汇聚善意</h4>
+            <p class="text-sm text-gray-600">每一份义卖收入，都成为帮助他人的温暖力量。</p>
+            <p class="text-xs text-gray-400 mt-3">2025-01-20</p>
+          </div>
+        </div>
+        <div class="border rounded-xl overflow-hidden">
+          <img src="https://picsum.photos/id/1040/400/250" class="w-full h-48 object-cover" alt="红马甲青年物资捐赠插画">
+          <div class="p-4">
+            <h4 class="font-bold mb-2">物资捐赠，传递温暖</h4>
+            <p class="text-sm text-gray-600">爱心物资精准送达，让善意直达需要的人手中。</p>
+            <p class="text-xs text-gray-400 mt-3">2025-01-25</p>
+          </div>
+        </div>
+        <div class="border rounded-xl overflow-hidden">
+          <img src="https://picsum.photos/id/1041/400/250" class="w-full h-48 object-cover" alt="青春志愿困境青少年帮扶插画">
+          <div class="p-4">
+            <h4 class="font-bold mb-2">困境帮扶，守护成长</h4>
+            <p class="text-sm text-gray-600">专项帮扶资金，为困境青少年成长保驾护航。</p>
+            <p class="text-xs text-gray-400 mt-3">2025-02-01</p>
+          </div>
+        </div>
+        <div class="border rounded-xl overflow-hidden">
+          <img src="https://picsum.photos/id/1042/400/250" class="w-full h-48 object-cover" alt="大学生青春志愿公益插画">
+          <div class="p-4">
+            <h4 class="font-bold mb-2">校园公益，薪火相传</h4>
+            <p class="text-sm text-gray-600">校园公益项目持续开展，善意不断传递。</p>
+            <p class="text-xs text-gray-400 mt-3">2025-02-08</p>
+          </div>
+        </div>
+        <div class="border rounded-xl overflow-hidden">
+          <img src="https://picsum.photos/id/1043/400/250" class="w-full h-48 object-cover" alt="青春志愿善款落地公益插画">
+          <div class="p-4">
+            <h4 class="font-bold mb-2">善款落地，梦想开花</h4>
+            <p class="text-sm text-gray-600">每一笔善款落地，都让一个梦想得以实现。</p>
+            <p class="text-xs text-gray-400 mt-3">2025-02-15</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 项目公示页（10条数据，完全不变） -->
+  <div id="public" class="tab-content">
+    <div class="bg-white rounded-xl p-6">
+      <h2 class="text-2xl font-bold mb-4">项目公示与收支明细</h2>
+      <div class="flex justify-between items-center mb-4">
+        <p class="text-gray-600">10个公益项目收支全程公开，接受社会监督</p>
+        <button onclick="openAddRecord()" class="bg-primary text-white px-4 py-2 rounded-lg text-sm">添加收支记录</button>
+      </div>
+      <table class="w-full border-collapse" id="recordTable">
+        <thead>
+          <tr class="bg-gray-50">
+            <th class="border p-3 text-left">项目名称</th>
+            <th class="border p-3 text-left">日期</th>
+            <th class="border p-3 text-left">类型</th>
+            <th class="border p-3 text-left">金额(元)</th>
+            <th class="border p-3 text-left">凭证状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border p-3">清马工程“藏龙班”</td>
+            <td class="border p-3">2023.12.26</td>
+            <td class="border p-3">支出</td>
+            <td class="border p-3 text-red-500">-33657.00</td>
+            <td class="border p-3">三单合一已核验</td>
+          </tr>
+          <tr>
+            <td class="border p-3">“情暖太平”青少年公益基金</td>
+            <td class="border p-3">2026.01.31</td>
+            <td class="border p-3">收入</td>
+            <td class="border p-3 text-green-500">+0.01</td>
+            <td class="border p-3">三单合一已核验</td>
+          </tr>
+          <tr>
+            <td class="border p-3">义卖善款捐赠</td>
+            <td class="border p-3">2025.04.02</td>
+            <td class="border p-3">收入</td>
+            <td class="border p-3 text-green-500">+1400.00</td>
+            <td class="border p-3">三单合一已核验</td>
+          </tr>
+          <tr>
+            <td class="border p-3">“大学之道”拍摄</td>
+            <td class="border p-3">2023.12.26</td>
+            <td class="border p-3">支出</td>
+            <td class="border p-3 text-red-500">-28695.50</td>
+            <td class="border p-3">三单合一已核验</td>
+          </tr>
+          <tr>
+            <td class="border p-3">武汉健之梦捐赠项目</td>
+            <td class="border p-3">2024.04.09</td>
+            <td class="border p-3">支出</td>
+            <td class="border p-3 text-red-500">-20000.00</td>
+            <td class="border p-3">三单合一已核验</td>
+          </tr>
+          <tr>
+            <td class="border p-3">三下乡暑期社会实践</td>
+            <td class="border p-3">2023.09.09</td>
+            <td class="border p-3">支出</td>
+            <td class="border p-3 text-red-500">-9670.00</td>
+            <td class="border p-3">三单合一已核验</td>
+          </tr>
+          <tr>
+            <td class="border p-3">大学生劳动教育基金</td>
+            <td class="border p-3">2026.03.11</td>
+            <td class="border p-3">收入</td>
+            <td class="border p-3 text-green-500">+15391.49</td>
+            <td class="border p-3">三单合一已核验</td>
+          </tr>
+          <tr>
+            <td class="border p-3">浸泡村英语公益项目</td>
+            <td class="border p-3">2024.04.03</td>
+            <td class="border p-3">收入</td>
+            <td class="border p-3 text-green-500">+100000.00</td>
+            <td class="border p-3">三单合一已核验</td>
+          </tr>
+          <tr>
+            <td class="border p-3">桑林琴等30名受资助学生</td>
+            <td class="border p-3">2022.07.06</td>
+            <td class="border p-3">支出</td>
+            <td class="border p-3 text-red-500">-150000.00</td>
+            <td class="border p-3">三单合一已核验</td>
+          </tr>
+          <tr>
+            <td class="border p-3">湖北珞格科技公益捐赠</td>
+            <td class="border p-3">2022.05.31</td>
+            <td class="border p-3">收入</td>
+            <td class="border p-3 text-green-500">+500000.00</td>
+            <td class="border p-3">三单合一已核验</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 关于我们页（不变） -->
+  <div id="about" class="tab-content">
+    <div class="bg-white rounded-xl p-6">
+      <div class="flex items-center gap-4 mb-6">
+        <div class="logo-circle w-20 h-20 text-2xl">云账</div>
+        <div>
+          <h2 class="text-2xl font-bold">云账透明队 · 益账知善项目</h2>
+          <p class="text-gray-500">青年红色筑梦之旅 · 公益组 | 国创赛申报作品</p>
+        </div>
+      </div>
+      <div class="space-y-4 text-gray-700">
+        <p><strong>团队介绍：</strong>云账透明队由10名会计、审计、ACCA专业学生组成，依托专业财务能力，打造校园小微公益财务透明平台。</p>
+        <p><strong>核心机制：</strong>三单合一凭证体系、善款钱流地图、公益故事可视化。</p>
+        <p><strong>项目成果：</strong>完成10个公益项目全流程监管，实现善款全程可追溯、可公示。</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- 添加项目弹窗（不变） -->
+<div id="projectModal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50">
+  <div class="bg-white rounded-xl p-6 w-full max-w-md">
+    <h3 class="text-xl font-bold mb-4">添加新项目</h3>
+    <div class="space-y-3">
+      <input type="text" placeholder="项目名称" class="w-full border rounded-lg p-2">
+      <input type="text" placeholder="项目类型" class="w-full border rounded-lg p-2">
+      <input type="date" class="w-full border rounded-lg p-2">
+      <textarea placeholder="项目简介" class="w-full border rounded-lg p-2 h-20"></textarea>
+    </div>
+    <div class="flex justify-end gap-3 mt-4">
+      <button onclick="closeAddProject()" class="px-4 py-2 border rounded-lg">取消</button>
+      <button class="px-4 py-2 bg-primary text-white rounded-lg">确认添加</button>
+    </div>
+  </div>
+</div>
+
+<!-- 添加收支弹窗（不变） -->
+<div id="recordModal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50">
+  <div class="bg-white rounded-xl p-6 w-full max-w-md">
+    <h3 class="text-xl font-bold mb-4">添加收支记录</h3>
+    <div class="space-y-3">
+      <select class="w-full border rounded-lg p-2">
+        <option>选择项目</option>
+        <option>清马工程“藏龙班”</option>
+        <option>义卖善款捐赠</option>
+        <option>大学生劳动教育基金</option>
+      </select>
+      <input type="date" class="w-full border rounded-lg p-2">
+      <select class="w-full border rounded-lg p-2">
+        <option>收入</option>
+        <option>支出</option>
+      </select>
+      <input type="number" placeholder="金额" class="w-full border rounded-lg p-2">
+      <input type="text" placeholder="凭证编号（三单合一）" class="w-full border rounded-lg p-2">
+    </div>
+    <div class="flex justify-end gap-3 mt-4">
+      <button onclick="closeAddRecord()" class="px-4 py-2 border rounded-lg">取消</button>
+      <button class="px-4 py-2 bg-primary text-white rounded-lg">确认添加</button>
+    </div>
+  </div>
+</div>
+
+<!-- 底部版权（不变） -->
+<footer class="bg-white mt-10 py-6 text-center text-sm text-gray-500">
+  <p>CopyRight 2026 @益账知善·云账透明团队 版权所有</p>
+  <p class="mt-1">让每一份善意都有回响 ❤</p>
+</footer>
+
+<script>
+// 导航Tab切换
+function switchTab(tabName) {
+  document.querySelectorAll('.nav-tab').forEach(t => {
+    t.classList.remove('text-primary', 'border-b-2', 'border-primary');
+    t.classList.add('text-gray-600');
+  });
+  document.querySelector(`.nav-tab[data-tab="${tabName}"]`).classList.add('text-primary', 'border-b-2', 'border-primary');
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById(tabName).classList.add('active');
+}
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', function(e) {
+    e.preventDefault();
+    switchTab(this.dataset.tab);
+  })
+})
+
+// 弹窗控制
+function openAddProject() { document.getElementById('projectModal').classList.remove('hidden'); }
+function closeAddProject() { document.getElementById('projectModal').classList.add('hidden'); }
+function openAddRecord() { document.getElementById('recordModal').classList.remove('hidden'); }
+function closeAddRecord() { document.getElementById('recordModal').classList.add('hidden'); }
+</script>
+</body>
+</html>
